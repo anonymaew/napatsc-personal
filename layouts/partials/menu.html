@@ -7,21 +7,35 @@ Renders a menu for the given menu ID.
 @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
 */}}
 
-{{- $page := .page }}
-{{- $menuID := .menuID }}
+{{ $page := .page }}
+{{ $menuID := .menuID }}
+{{ $lang := $page.Language }}
 
 {{- with index site.Menus $menuID }}
   <nav>
-    <ul>
+    {{ partial "menu/input.html" (dict "name" "nav" "icon" "menu" "type" "start") }}
+    {{ partial "menu/input.html" (dict "name" "nav" "icon" "menu" "type" "end") }}
+    <a id="site-title" href="{{ site.Home.RelPermalink }}">
+      {{ site.Title }}
+      {{ if ne $lang (index $page.Site.Home.AllTranslations 0).Language }}
+        <sup>{{ upper $lang }}</sup>
+      {{ end }}
+    </a>
+    <menu class="menu-options" id="menu-nav-options">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-    </ul>
+    </menu>
+  <span id="menu-icons-group">
+    {{ partial "menu/theme.html" }}
+    {{ partial "menu/translation.html" $page }}
+    {{ partial "menu/search.html" $page }}
+  </span>
   </nav>
 {{- end }}
 
 {{- define "partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
+    {{- $attrs := dict "href" (.URL | relLangURL) }}
     {{- if $page.IsMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
     {{- else if $page.HasMenuCurrent .Menu .}}

@@ -1,0 +1,27 @@
+{{ if eq .type "start" }}
+<input
+  type="radio"
+  id="menu-{{ .name }}"
+  class="menu-value"
+  name="menu-buttons"
+  value="{{ .name }}"
+  style="display: none"
+/>
+<span class="menu-group">
+  <label class="menu-icons menu-{{ .name }}-icon" for="menu-{{ .name }}">
+    {{ partial "icon.html" .icon }}</label
+  >
+  <span class="menu-hidden">
+    <label class="menu-icons menu-{{ .name }}-icon menu-icons-close">
+      <input
+        type="radio"
+        name="menu-buttons"
+        value="nil"
+        style="display: none"
+      />
+      {{ partial "icon.html" .icon }}</label
+    >
+    {{ else if eq .type "end" }}
+  </span>
+</span>
+{{ end }}

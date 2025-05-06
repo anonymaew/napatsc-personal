@@ -1,0 +1,38 @@
+{{ partial "menu/input.html" (dict "name" "theme" "icon" "brightness_6" "type"
+"start") }}
+<menu class="menu-options menu-island">
+  <li onclick="changeTheme('light')" data-theme="light">
+    {{ partial "icon.html" "light_mode" }}{{ i18n "light_mode" }}
+  </li>
+  <li onclick="changeTheme('dark')" data-theme="dark">
+    {{ partial "icon.html" "dark_mode" }}{{ i18n "dark_mode" }}
+  </li>
+  <li onclick="changeTheme(null)" data-theme="system">
+    {{ partial "icon.html" "brightness_6" }}{{ i18n "system_default" }}
+  </li>
+</menu>
+{{ partial "menu/input.html" (dict "name" "theme" "icon" "brightness_6" "type"
+"end") }}
+<script>
+  const changeTheme = (theme) => {
+    const currentTheme = localStorage.getItem("theme");
+    document.querySelector("body").style.colorScheme = theme;
+    document.querySelectorAll(".menu-theme-icon > span.icon").forEach((i) => {
+      i.innerText = theme
+        ? { light: "light_mode", dark: "dark_mode" }[theme]
+        : "brightness_6";
+    });
+    document.querySelector(
+      `li[data-theme="${currentTheme || "system"}"]`,
+    ).style.backgroundColor = "initial";
+    document.querySelector(
+      `li[data-theme="${theme || "system"}"]`,
+    ).style.backgroundColor = "var(--background-tri)";
+    if (theme === null) localStorage.removeItem("theme");
+    else localStorage.setItem("theme", theme);
+    document.querySelector('[name="menu-buttons"][value="theme"]').checked =
+      null;
+  };
+  const localTheme = localStorage.getItem("theme");
+  changeTheme(localTheme);
+</script>

@@ -1,0 +1,14 @@
+{{ partial "menu/input.html" (dict "name" "search" "icon" "search" "type"
+"start") }}
+<div class="island">
+  <form
+    action="https://duckduckgo.com/?t=ffab&q=css+selector+previous+sibling&ia=web"
+    method="GET"
+  >
+    <input type="text" name="q" style="display: inline" />
+    <input type="hidden" name="sites" value="napatsc.com" />
+    <input type="submit" value='{{ i18n "search" }}' />
+  </form>
+</div>
+{{ partial "menu/input.html" (dict "name" "search" "icon" "search" "type" "end")
+}}
