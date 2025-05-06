@@ -1,12 +1,19 @@
-{{- with resources.Get "js/main.js" }}
-  {{- if eq hugo.Environment "development" }}
-    {{- with . | js.Build }}
-      <script src="{{ .RelPermalink }}"></script>
-    {{- end }}
-  {{- else }}
-    {{- $opts := dict "minify" true }}
-    {{- with . | js.Build $opts | fingerprint }}
-      <script src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+{{ $jsRules := slice
+  (dict "name" "blogComponents" "include" (and (eq .Section "blog") (eq .Kind "page")))
+}}
+{{ range $jsRules }}
+  {{ if .include }}
+    {{- with resources.Get (printf "js/%s.js" .name) }}
+      {{- if eq hugo.Environment "development" }}
+        {{- with . | js.Build }}
+          <script defer src="{{ .RelPermalink }}"></script>
+        {{- end }}
+      {{- else }}
+        {{- $opts := dict "minify" true }}
+        {{- with . | js.Build $opts | fingerprint }}
+          <script defer src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+        {{- end }}
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}

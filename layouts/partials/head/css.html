@@ -1,9 +1,21 @@
-{{- with resources.Get "css/main.css" }}
-  {{- if eq hugo.Environment "development" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{- end }}
-  {{- end }}
-{{- end }}
+{{ $cssRules := slice (dict "name" "main" "include" true) (dict "name"
+"catppuccin" "include" (and (eq .Section "blog") (eq .Kind "page"))) (dict
+"name" "card" "include" (or (eq .Kind "section") (eq .Kind "term"))) (dict
+"name" "pagefind" "include" (eq .Layout "search"))}} {{ range $cssRules }} {{ if
+.include }} {{- with resources.Get (printf "css/%s.css" .name) }} {{- if eq
+hugo.Environment "development" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" />
+{{- else }} {{- with . | minify | fingerprint }}
+<link
+  rel="stylesheet"
+  href="{{ .RelPermalink }}"
+  integrity="{{ .Data.Integrity }}"
+  crossorigin="anonymous"
+/>
+{{- end }} {{- end }} {{- end }} {{ end }} {{ end }}
+
+<noscript>
+  {{ with resources.Get "css/nojs.css" }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" />
+  {{ end }}
+</noscript>
