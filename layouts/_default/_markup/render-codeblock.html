@@ -1,0 +1,7 @@
+{{ $result := transform.HighlightCodeBlock . }}
+<div class="codeblock">
+  {{ $result.Wrapped }}
+  <button class="codeblock-copy">
+    <span class="icon">content_copy</span>
+  </button>
+</div>
