@@ -1,23 +1,62 @@
 baseURL = 'https://example.org/'
-languageCode = 'en-US'
 title = 'My New Hugo Site'
+theme = 'napatsc_personal'
+enableRobotsTXT = true
 
-[[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 10
+[languages]
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 1
+  [languages.th]
+    languageCode = 'th-TH'
+    languageName = 'ภาษาไทย'
+    weight = 2
 
-[[menus.main]]
-name = 'Posts'
-pageRef = '/posts'
-weight = 20
+[menus]
+  [[menus.main]]
+    name = 'About'
+    identifier = 'about'
+    pageRef = '/about'
+    weight = 10
+  [[menus.main]]
+    name = 'Projects'
+    identifier = 'projects'
+    pageRef = '/project'
+    weight = 20
+  [[menus.main]]
+    name = 'Blogs'
+    identifier = 'blogs'
+    pageRef = '/blog'
+    weight = 30
+  [[menus.main]]
+    name = 'Gallery'
+    identifier = 'gallery'
+    pageRef = '/gallery'
+    weight = 40
 
-[[menus.main]]
-name = 'Tags'
-pageRef = '/tags'
-weight = 30
+disableKinds = ['term']
+
+[taxonomies]
+  blogTag = "blog/tag"
+  galleryTag = "gallery/tag"
+  projectTag = "project/tag"
+
+[permalinks]
+  [permalinks.taxonomy]
+    "blog/tag" = "/blog"
+    "gallery/tag" = "/gallery"
+    "project/tag" = "/project"
 
 [module]
   [module.hugoVersion]
     extended = false
     min = "0.116.0"
+
+[markup]
+  [markup.highlight]
+    noclasses = false
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+
