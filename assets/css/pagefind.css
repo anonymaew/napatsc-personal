@@ -1,0 +1,63 @@
+.pagefind-ui {
+  position:relative;
+}
+.pagefind-ui__search-input{
+  font-size: medium;
+  width: calc(100% - 1rem);
+  margin: 1rem 0;
+  padding-right: 0.5rem !important;
+}
+.pagefind-ui__search-clear,.pagefind-ui__button {
+  background-color: transparent;
+  border: none;
+}
+.pagefind-ui__search-clear {
+  position: absolute;
+  right: 0.5rem;
+  top: 1.5rem;
+}
+.pagefind-ui__result-thumb,.pagefind-ui__suppressed {
+  display:none;
+}
+
+.pagefind-ui__results {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.pagefind-ui__result {
+  display: flow-root;
+  background-color: var(--background-sec);
+  padding: 0 1rem 1rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0.4rem;
+}
+.pagefind-ui__result-nested {
+  margin-left: 2rem;
+  p {
+  }
+}
+.pagefind-ui__result-title {
+  margin-bottom: 0.2rem;
+}
+.pagefind-ui__result-excerpt {
+  font-size: small;
+  margin: 0.2rem 0;
+  mark {
+    background-color: var(--highlight);
+    padding: 0 0.2rem;
+    border-radius: 0.2rem;
+  }
+}
+
+.pagefind-ui__result-inner > .pagefind-ui__result-title .pagefind-ui__result-link {
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: larger;
+  text-decoration-line: none;
+}
+
+.pagefind-ui__button {
+  cursor: pointer;
+  padding: 1rem;
+}
