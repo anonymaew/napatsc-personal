@@ -1,0 +1,7 @@
+home = 'หน้าหลัก'
+menu = 'เมนู'
+light_mode = 'โหมดสว่าง'
+dark_mode = 'โหมดมืด'
+system_default = 'ตามระบบ'
+search = 'ค้นหา'
+404_description = "ไม่มีหน้าเว็บบน URL นี้"

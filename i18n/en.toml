@@ -1,0 +1,7 @@
+home = 'Home'
+menu = 'Menu'
+light_mode = 'Light mode'
+dark_mode = 'Dark mode'
+system_default = 'System default'
+search = 'Search'
+404_description = "The page with this URL does not exists"
