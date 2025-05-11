@@ -436,12 +436,9 @@ picture {
 }
 
 #breadcrumbs {
-  display: flex;
-  padding: 0;
   font-size: small;
   color: var(--foreground-sec);
-  list-style-type: none;
-  li:not(:first-child)::before {
+  span:not(:first-child)::before {
     content: '/'; 
   }
   a {
