@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <div style="text-align: center" data-pagefind-ignore>
+    <h1>404 Not Found</h1>
+    <p id="url"></p>
+    <p>{{ i18n "404_description" }}</p>
+    <script>
+      document.querySelector("#url").innerHTML =
+        `URL: <code>${window.location.pathname}</code>`;
+    </script>
+  </div>
+{{ end }}
