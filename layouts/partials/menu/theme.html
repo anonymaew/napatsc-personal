@@ -1,20 +1,23 @@
 {{ partial "menu/input.html" (dict "name" "theme" "icon" "brightness_6" "type"
-"start") }}
-<menu class="menu-options menu-island">
-  <li onclick="changeTheme('light')" data-theme="light">
+  "start")
+}}
+<div class="menu-options menu-island menu-theme">
+  <button onclick="changeTheme('light')" data-theme="light">
     {{ partial "icon.html" "light_mode" }}{{ i18n "light_mode" }}
-  </li>
-  <li onclick="changeTheme('dark')" data-theme="dark">
+  </button>
+  <button onclick="changeTheme('dark')" data-theme="dark">
     {{ partial "icon.html" "dark_mode" }}{{ i18n "dark_mode" }}
-  </li>
-  <li onclick="changeTheme(null)" data-theme="system">
+  </button>
+  <button onclick="changeTheme(null)" data-theme="system">
     {{ partial "icon.html" "brightness_6" }}{{ i18n "system_default" }}
-  </li>
-</menu>
+  </button>
+</div>
 {{ partial "menu/input.html" (dict "name" "theme" "icon" "brightness_6" "type"
-"end") }}
+  "end")
+}}
 <script>
   const changeTheme = (theme) => {
+    console.log("changing to", theme);
     const currentTheme = localStorage.getItem("theme");
     document.querySelector("body").style.colorScheme = theme;
     document.querySelectorAll(".menu-theme-icon > span.icon").forEach((i) => {
@@ -23,15 +26,14 @@
         : "brightness_6";
     });
     document.querySelector(
-      `li[data-theme="${currentTheme || "system"}"]`,
+      `button[data-theme="${currentTheme || "system"}"]`,
     ).style.backgroundColor = "initial";
     document.querySelector(
-      `li[data-theme="${theme || "system"}"]`,
+      `button[data-theme="${theme || "system"}"]`,
     ).style.backgroundColor = "var(--background-tri)";
     if (theme === null) localStorage.removeItem("theme");
     else localStorage.setItem("theme", theme);
-    document.querySelector('[name="menu-buttons"][value="theme"]').checked =
-      null;
+    document.activeElement.blur();
   };
   const localTheme = localStorage.getItem("theme");
   changeTheme(localTheme);

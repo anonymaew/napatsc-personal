@@ -1,22 +1,18 @@
-{{ partial "menu/input.html" (dict "name" "translate" "icon" "translate" "type"
-"start") }} {{ $lang := .Language }}
+{{ partial "menu/input.html"
+  (dict "name" "translate" "icon" "translate" "type" "start")
+}}
+{{ $lang := .Language }}
 <menu class="menu-options menu-island">
   {{ range .AllTranslations }}
-  <li
-    {{
-    if
-    eq
-    $lang
-    .Language
-    }}
-    style="background-color: var(--background-tri)"
-    {{
-    end
-    }}
-  >
-    <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
-  </li>
+    <li
+      {{ if eq $lang .Language }}
+        style="background-color: var(--background-tri)"
+      {{ end }}
+    >
+      <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+    </li>
   {{ end }}
 </menu>
-{{ partial "menu/input.html" (dict "name" "translate" "icon" "translate" "type"
-"end") }}
+{{ partial "menu/input.html"
+  (dict "name" "translate" "icon" "translate" "type" "end")
+}}
