@@ -1,23 +1,23 @@
 :root {
-  --page-width: 45rem;
+  --page-width: min(45rem, calc(100% - 2rem));
   --small-page-width: 30rem;
   --header-height: 8rem;
   --footer-height: 5rem;
   color-scheme: light dark;
-  /* green */
-  --accent-color: light-dark(#40a02b, #a6e3a1);
+  /* blue/green */
+  --accent-color: light-dark(#1e66f5, #a6e3a1);
   /* base */
-  --background-color: light-dark(#eff1f5, #1e1e2e);
+  --background: light-dark(#eff1f5, #1e1e2e);
   /* mantle */
   --background-sec: light-dark(#e6e9ef, #181825);
   /* surface0 */
   --background-tri: light-dark(#ccd0da, #313244);
   /* text */
   --foreground-color: light-dark(#4c4f69, #cdd6f4);
-  /* overlay1 */
-  --foreground-sec: light-dark(#8c8fa1, #7f849c);
+  /* subtext1/overlay2 */
+  --foreground-sec: light-dark(#5c5f77, #9399b2);
   --border: 1.5px solid;
-  --shadow: 0 0.2rem 1rem #00000020;
+  --shadow: 0 0.2rem 1.6rem light-dark(#00000040, #000000b0);
   /* highlight: rosewater */
   --highlight: light-dark(#dc8a78,#f5e0dc);
 }
@@ -114,7 +114,7 @@ pre > code {
 
 body {
   position: relative;
-  background-color: var(--background-color);
+  background: var(--background);
   color: var(--foreground-color);
   line-height: 1.5;
   margin: 0;
@@ -127,11 +127,7 @@ main,
 footer {
   margin: 0 auto;
   padding: 0 1rem;
-  width: min(var(--page-width), calc(100% - 2rem));
-}
-header {
-  z-index: 9999;
-  position: relative;
+  width: var(--page-width);
 }
 main {
   min-height: calc(100vh - var(--footer-height) - var(--header-height));
@@ -177,10 +173,18 @@ menu {
 }
 
 input {
-  background-color: var(--background-tri);
+  background: var(--background-tri);
+}
+button {
+  cursor: pointer;
+  background: transparent;
+}
+input,button{
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
   border: none;
   border-radius: 0.2rem;
-
   padding: 0.5rem;
 }
 
@@ -346,7 +350,7 @@ summary {
 }
 
 code {
-  background-color: var(--background-tri);
+  background: var(--background-tri);
   border-radius: 0.4rem;
   padding: 0 0.4rem 0.2rem 0.4rem;
 }
@@ -359,7 +363,7 @@ pre {
   code {
     display: block;
     width: fit-content;
-    background-color: inherit;
+    background: inherit;
     padding: 0;
     padding-right: 1rem;
   }
@@ -379,7 +383,7 @@ pre {
 
 .tag {
   position: relative;
-  background-color: var(--background-tri);
+  background: var(--background-tri);
   border-radius: 0.4rem;
   padding: 0.2rem 0.4rem;
   margin-right: 0.4rem;
@@ -432,7 +436,7 @@ picture {
 
 .codeblock-copy {
   aspect-ratio: 1;
-  background-color: var(--background-color);
+  background: var(--background);
   border: none;
   cursor: pointer;
   border-radius: 0.2rem;
@@ -445,7 +449,7 @@ picture {
   }
 }
 .codeblock-copy:hover {
-  background-color: var(--background-tri);
+  background: var(--background-tri);
 }
 
 .text-green {
@@ -464,3 +468,18 @@ picture {
     text-decoration: none;
   }
 }
+
+@media print {
+  :root{
+    --background: white;
+    --background-sec: white;
+    --background-tri: white;
+    --foreground-color: black;
+    --foreground-sec: black;
+    --accent-color: black;
+  }
+  nav {
+    display: none;
+  }
+}
+
