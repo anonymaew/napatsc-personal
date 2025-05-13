@@ -1,12 +1,12 @@
 {{ define "main" }}
-  <h1 data-pagefind-ignore>{{ or (i18n .Title) .Title }}</h1>
+  <h1>{{ .Title }}</h1>
   {{ .Content }}
   <div class="card-grid">
     {{ range .Pages }}
-      <div class="card card-1">
-        <picture class="card-img img-16-9">
-          <img src="{{ .RelPermalink }}cover.webp" />
-        </picture>
+      <div class="card card-2">
+        <div class="card-img">
+          <img class="img-16-9" src="{{ .RelPermalink }}cover.webp" />
+        </div>
         <div class="card-text">
           <a href="{{ .RelPermalink }}" class="card-link">
             <h2>{{ .LinkTitle }}</h2>
