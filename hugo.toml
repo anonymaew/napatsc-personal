@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 title = 'My New Hugo Site'
-theme = 'napatsc_personal'
+theme = 'napatsc-personal'
 enableRobotsTXT = true
 
 [languages]
