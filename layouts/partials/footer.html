@@ -1,1 +1,21 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<hr />
+{{ if eq .Lang "en" }}
+  <p>
+    Made by <a href="https://gohugo.io">Hugo</a> using
+    <a href="https://github.com/anonymaew/napatsc-personal">custom theme</a>.
+  </p>
+  <p>
+    &copy; 2021-{{ now.Year }}, <a href="https://napatsc.com">Napat Srichan</a>.
+  </p>
+{{ else if eq .Lang "th" }}
+  <p>
+    สร้างโดยใช้ <a href="https://gohugo.io">Hugo</a> และ<a
+      href="https://github.com/anonymaew/napatsc-personal"
+      >ธีมปรับแต่งเอง</a
+    >.
+  </p>
+  <p>
+    &copy; 2021-{{ now.Year }},
+    <a href="https://napatsc.com">ณภัทร ศรีจันทร์</a>.
+  </p>
+{{ end }}
