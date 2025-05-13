@@ -1,0 +1,21 @@
+{{ $section := "" }}
+{{ $tags := 0 }}
+
+{{ if (.Param "blog/tag") }}
+  {{ $section = "blog" }}
+  {{ $tags = (.Param "blog/tag") }}
+{{ else if (.Param "gallery/tag") }}
+  {{ $section = "gallery" }}
+  {{ $tags = (.Param "gallery/tag") }}
+{{ end }}
+
+{{ with $tags }}
+  <div class="tags">
+    {{ range $index, $tag := (. | sort) }}
+      {{ $tag = $tag | urlize }}
+      <a class="tag" href="{{ (printf "/%s/tag/%s" $section $tag) }}"
+        >{{ $tag | urlize }}</a
+      >
+    {{ end }}
+  </div>
+{{ end }}

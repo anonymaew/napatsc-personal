@@ -12,6 +12,7 @@
             <h2>{{ .LinkTitle }}</h2>
           </a>
           <p>{{ .Page.Description }}</p>
+          {{ partial "tags.html" . }}
         </div>
       </div>
     {{ end }}

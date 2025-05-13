@@ -6,6 +6,7 @@
   <p>
     <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
   </p>
+  {{ partial "tags.html" . }}
   <hr />
   {{ .Content }}
 {{ end }}
